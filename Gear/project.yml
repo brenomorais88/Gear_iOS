@@ -1,0 +1,42 @@
+name: Gear
+options:
+  postGenCommand: |
+    rm -rf Pods
+    rm -rf Podfile.lock
+    pod install --repo-update
+targets:
+  Gear:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Gear
+    settings:
+      base:
+        INFOPLIST_FILE: Gear/Gear/Info.plist
+        CODE_SIGN_STYLE: Manual
+        SWIFT_VERSION: 5.0
+        PRODUCT_BUNDLE_IDENTIFIER: com.bit2b.gear
+        ENABLE_BITCODE: 'NO'
+  
+  GearTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: GearTests
+    settings:
+      base:
+        CODE_SIGN_STYLE: Manual
+        SWIFT_VERSION: 5.0
+        PRODUCT_BUNDLE_IDENTIFIER: com.bit2b.geartests
+  
+  GearUITests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: GearTests
+    settings:
+      base:
+        CODE_SIGN_STYLE: Manual
+        SWIFT_VERSION: 5.0
+        PRODUCT_BUNDLE_IDENTIFIER: com.bit2b.gearuitests
